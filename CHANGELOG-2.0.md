@@ -3,6 +3,9 @@
 ## Bug fixes
 
 - PIM-7323: Fix unique data synchronizer to handle value removal
+- PIM-7349: Fix empty family when using quick export of products
+
+# 2.0.x
 
 # 2.0.23 (2018-04-30)
 
