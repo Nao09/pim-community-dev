@@ -1,3 +1,8 @@
+# 1.7.x
+
+## Bug fixes
+ - SDS-3606: Fix deletion and reinsertion of all attributes relations at family save time
+
 # 1.7.21 (2018-04-23)
 
 ## Bug fixes
