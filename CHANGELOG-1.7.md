@@ -1,3 +1,9 @@
+# 1.7.x
+
+## Bug fixes
+
+- PIM-7370: disable multisorting on group/user and role/user grid for a better sort experience
+
 # 1.7.21 (2018-04-23)
 
 ## Bug fixes
