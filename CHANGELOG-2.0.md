@@ -1,3 +1,9 @@
+# 2.0.x
+
+## Bug fixes
+
+- PIM-7364: category tree must use the catalog locale for mass edit, not the UI locale
+
 # 2.0.25 (2018-05-21)
 
 ## Bug fixes
