@@ -3,6 +3,11 @@
 ## Bug fixes
 
 - PIM-7363: fix the pim:catalog:remove-wrong-boolean-values-on-variant-products command
+- PIM-7358: Cascade remove variant attribute sets when removing a family variant
+
+## BC breaks
+
+- MySQL table constraints have changed. Please execute the pending migrations using the `doctrine:migrations:migrate` console command.
 
 # 2.2.5 (2018-05-16)
 
