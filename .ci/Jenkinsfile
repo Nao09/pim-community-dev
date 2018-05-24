@@ -44,7 +44,7 @@ stage("Build") {
                         sh "gcloud container builds submit --config .ci/builder.yaml --substitutions _IMAGE_TAG=${tag} ."
                     }}
                 }
-            },
+            }/*,
             "pim-ee": {
                 if (editions.contains("ee") && launchBehatTests.equals("yes")) {
                     pod(label: "build", containers: [
@@ -64,7 +64,7 @@ stage("Build") {
                 } else {
                     echo "Skipping Enterprise Edition matrix"
                 }
-            }/*,
+            },
             "pim-ce-odm": {
                 if (editions.contains("ceodm") && launchBehatTests.equals("yes")) {
                     withBuildNode({
@@ -144,24 +144,17 @@ stage("Build") {
         )
     }
 }
-/*
+
 stage("Test") {
     try {
         milestone 3
         parallel(
-            "phpunit": {
-                if (launchUnitTests.equals("yes")) {
-                    withPhp({
-                        try {
-                            sh "cd /home/jenkins/pim && ./bin/phpunit -c app/phpunit.xml.dist --testsuite PIM_Unit_Test --log-junit ${env.WORKSPACE}/junit_output.xml"
-                        } finally {
-                            junit "junit_output.xml"
-                        }
-                    })
-                } else {
-                    echo "Skipping unit test phpunit"
-                }
-            },
+            "phpunit": {testif(
+                condition: launchUnitTests.equals("yes"),
+                container: tag,
+                script: "cd /var/www/pim && vendor/bin/phpunit -c app/phpunit.xml.dist --testsuite PIM_Unit_Test --log-junit %workspace%/junit_output.xml",
+                junit: "junit_output.xml"
+            )}/*
             "phpspec": {
                 if (launchUnitTests.equals("yes")) {
                     withPhp({
@@ -226,7 +219,7 @@ stage("Test") {
                 } else {
                     echo "Skipping integration test"
                 }
-            },
+            }/*,
             "behat-ce": {
                 if (launchBehatTests.equals("yes") && editions.contains("ce")) {
                     queue({
@@ -410,10 +403,9 @@ stage("Test") {
                 } else {
                     echo "Skipping behat test"
                 }
-            }
+            }*/
         )
     } finally {
         notifySlack(slackChannel)
     }
 }
-*/
